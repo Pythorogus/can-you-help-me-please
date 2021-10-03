@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class Choice : MonoBehaviour
 {
-    public int mentalEdit;
-    public int socialEdit;
-    public int familyEdit;
-    public int loveEdit;
-    public int careerEdit;
-
+    public int mentalMod;
+    public int socialMod;
+    public int familyMod;
+    public int loveMod;
+    public int careerMod;
     public bool active = true;
 
     // Start is called before the first frame update

@@ -73,10 +73,4 @@ public class Stats : MonoBehaviour
         Love = 10;
         Career = 10;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

@@ -120,7 +120,6 @@ public class ChoiceController : MonoBehaviour
         choiceLeft.familyMod = soLeft.familyMod;
         choiceLeft.loveMod = soLeft.loveMod;
         choiceLeft.careerMod = soLeft.careerMod;
-        print(soRight);
         if (soRight != null){
             choiceRight.mentalMod = soRight.mentalMod;
             choiceRight.socialMod = soRight.socialMod;

@@ -21,6 +21,7 @@ public class ChoiceController : MonoBehaviour
         choiceUp = GameObject.Find("Choices").transform.Find("Up").gameObject;
         choiceDown = GameObject.Find("Choices").transform.Find("Down").gameObject;
         
+        // Select 2 randoms index pour the typeList
         int typeIndex = Random.Range(0, typeList.Count - 1);
         string randomType = typeList[typeIndex];
         int typeIndex2 = Random.Range(0, typeList.Count - 1);
@@ -29,17 +30,18 @@ public class ChoiceController : MonoBehaviour
         }
         string randomType2 = typeList[typeIndex2];
 
-        string levelFolder = "Assets/Scripts/Choices/Social";
-        DirectoryInfo dir = new DirectoryInfo(levelFolder);
+        // Count files in the folder
+        string typeFolder = "Assets/Scripts/Choices/"+randomType;
+        DirectoryInfo dir = new DirectoryInfo(typeFolder);
         FileInfo[] info = dir.GetFiles("*.cs");
         int fileCount = info.Length;
-        print(fileCount);
         Array.Clear(info, 0, info.Length);
 
-        ChoiceFiller soLeft = (ChoiceFiller)ScriptableObject.CreateInstance("Social" + Random.Range(1, fileCount).ToString());
+        // Instantiate
+        ChoiceFiller soLeft = (ChoiceFiller)ScriptableObject.CreateInstance(randomType + Random.Range(1, fileCount).ToString());
         //ChoiceFiller soRight = (ChoiceFiller)ScriptableObject.CreateInstance("ChoiceFiller");
         print(soLeft);
-        print(soLeft.mentalMod);
+        print(soLeft.type);
     }
 
     // Update is called once per frame

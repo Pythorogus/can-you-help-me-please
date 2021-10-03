@@ -9,6 +9,8 @@ public class Choice : MonoBehaviour
     public int familyMod;
     public int loveMod;
     public int careerMod;
+    public string type;
+    public string text;
     public bool active = true;
 
     // Start is called before the first frame update

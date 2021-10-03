@@ -3,7 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
+using TMPro;
 
 public class ChoiceController : MonoBehaviour
 {
@@ -11,6 +13,10 @@ public class ChoiceController : MonoBehaviour
     private Choice choiceRight;
     private Choice choiceUp;
     private Choice choiceDown;
+    private GameObject left;
+    private GameObject right;
+    private GameObject up;
+    private GameObject down;
     private List<string> typeList = new List<string>{"Social","Family","Love","Career"};
     private Stats stats;
 
@@ -21,6 +27,10 @@ public class ChoiceController : MonoBehaviour
         choiceRight = GameObject.Find("Choices").transform.Find("Right").gameObject.GetComponent<Choice>();
         choiceUp = GameObject.Find("Choices").transform.Find("Up").gameObject.GetComponent<Choice>();
         choiceDown = GameObject.Find("Choices").transform.Find("Down").gameObject.GetComponent<Choice>();
+        left = GameObject.Find("Choices").transform.Find("Left").gameObject;
+        right = GameObject.Find("Choices").transform.Find("Right").gameObject;
+        up = GameObject.Find("Choices").transform.Find("Up").gameObject;
+        down = GameObject.Find("Choices").transform.Find("Down").gameObject;
 
         // Self choice
         choiceDown.mentalMod = 5;
@@ -120,12 +130,17 @@ public class ChoiceController : MonoBehaviour
         choiceLeft.familyMod = soLeft.familyMod;
         choiceLeft.loveMod = soLeft.loveMod;
         choiceLeft.careerMod = soLeft.careerMod;
+        left.transform.Find("Text").gameObject.GetComponent<TMP_Text>().text = soLeft.text;
+        left.transform.Find("Image").gameObject.GetComponent<RawImage>().texture = Resources.Load<Texture>("Images/" + soLeft.texture);
+
         if (soRight != null){
             choiceRight.mentalMod = soRight.mentalMod;
             choiceRight.socialMod = soRight.socialMod;
             choiceRight.familyMod = soRight.familyMod;
             choiceRight.loveMod = soRight.loveMod;
             choiceRight.careerMod = soRight.careerMod;
+            right.transform.Find("Text").gameObject.GetComponent<TMP_Text>().text = soRight.text;
+            right.transform.Find("Image").gameObject.GetComponent<RawImage>().texture = Resources.Load<Texture>("Images/" + soRight.texture);
         }
     }
 }

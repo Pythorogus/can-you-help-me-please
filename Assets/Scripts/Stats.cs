@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class Stats : MonoBehaviour
@@ -23,6 +24,9 @@ public class Stats : MonoBehaviour
         set {
             mental = value;
             mentalText.GetComponent<TMP_Text>().text = mental.ToString();
+            if(mental <= 0){
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
         } 
     }
     public int Social
@@ -31,6 +35,9 @@ public class Stats : MonoBehaviour
         set {
             social = value;
             socialText.GetComponent<TMP_Text>().text = social.ToString();
+            if(social <= 0){
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
         } 
     }
     public int Family
@@ -39,6 +46,9 @@ public class Stats : MonoBehaviour
         set {
             family = value;
             familyText.GetComponent<TMP_Text>().text = family.ToString();
+            if(family <= 0){
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
         } 
     }
     public int Love
@@ -47,6 +57,9 @@ public class Stats : MonoBehaviour
         set {
             love = value;
             loveText.GetComponent<TMP_Text>().text = love.ToString();
+            if(love <= 0){
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
         } 
     }
     public int Career
@@ -55,6 +68,9 @@ public class Stats : MonoBehaviour
         set {
             career = value;
             careerText.GetComponent<TMP_Text>().text = career.ToString();
+            if(career <= 0){
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
         } 
     }
 

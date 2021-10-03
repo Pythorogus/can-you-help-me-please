@@ -10,5 +10,6 @@ public class Career1 : ChoiceFiller
         careerMod = 5;
         type = "Career";
         text = "test career";
+        texture = "career";
     }
 }

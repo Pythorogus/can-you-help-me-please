@@ -10,5 +10,6 @@ public class Family1 : ChoiceFiller
         familyMod = 5;
         type = "Family";
         text = "test family";
+        texture = "family";
     }
 }

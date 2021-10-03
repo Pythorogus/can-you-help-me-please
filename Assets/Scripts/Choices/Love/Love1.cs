@@ -10,5 +10,6 @@ public class Love1 : ChoiceFiller
         loveMod = 5;
         type = "Love";
         text = "test love";
+        texture = "love";
     }
 }

@@ -10,5 +10,6 @@ public class Social1 : ChoiceFiller
         socialMod = 5;
         type = "Social";
         text = "test social";
+        texture = "social";
     }
 }

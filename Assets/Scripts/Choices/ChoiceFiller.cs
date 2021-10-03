@@ -11,4 +11,5 @@ public abstract class ChoiceFiller : ScriptableObject
     public int careerMod = 0;
     public string type;
     public string text;
+    public string texture;
 }

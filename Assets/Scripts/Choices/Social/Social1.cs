@@ -9,7 +9,7 @@ public class Social1 : ChoiceFiller
         mentalMod = -5;
         socialMod = 5;
         type = "Social";
-        text = "test social";
+        text = "Hey, Bladerunner 2077 is out! But I have nobody to go to the theatre with. I don’t really wanna go alone… Can I count on you?";
         texture = "social";
     }
 }

@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Love1 : ChoiceFiller
+public class Love7 : ChoiceFiller
 {
-    public Love1()
+    public Love7()
     {
         mentalMod = -5;
         loveMod = 5;
         type = "Love";
-        text = "I miss you! Maybe we can plan next weekend together? Will you be available?";
+        text = "I feel like we need to spend more time together. Maybe we could spend next Saturday in the city? Are you interested?";
         texture = "love";
     }
 }

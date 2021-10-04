@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Social3 : ChoiceFiller
+public class Social12 : ChoiceFiller
 {
-    public Social3()
+    public Social12()
     {
         mentalMod = -5;
         socialMod = 5;
         type = "Social";
-        text = "I move next weekend. Damn, there’s a lot to do. I’ll buy pizza… Can you help me?";
+        text = "F**k, I’m tired. I need to talk to somebody… I’m not doing anything tonight, can you help me?";
         texture = "social";
     }
 }

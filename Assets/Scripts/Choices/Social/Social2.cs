@@ -9,7 +9,7 @@ public class Social2 : ChoiceFiller
         mentalMod = -5;
         socialMod = 5;
         type = "Social";
-        text = "test social 2";
+        text = "It’s Eden’s birthday tomorrow evening! She’s turning 24 already. Common, it will be fun, and she really likes you. You’ll be there, right?";
         texture = "social";
     }
 }

@@ -9,7 +9,7 @@ public class Social5 : ChoiceFiller
         mentalMod = -5;
         socialMod = 5;
         type = "Social";
-        text = "test social 5";
+        text = "Oh god oh god oh god! I think Matt is gonna breakup with me… Please, I need you to come over… Can you help me?!";
         texture = "social";
     }
 }

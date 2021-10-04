@@ -9,7 +9,7 @@ public class Family1 : ChoiceFiller
         mentalMod = -5;
         familyMod = 5;
         type = "Family";
-        text = "test family";
+        text = "It’s Nanny’s birthday in two week. I’d like to go shopping with Mom for a gift. But you know Nanny the best. Can you help me?";
         texture = "family";
     }
 }

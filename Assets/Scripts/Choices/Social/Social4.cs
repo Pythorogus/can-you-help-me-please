@@ -9,7 +9,7 @@ public class Social4 : ChoiceFiller
         mentalMod = -5;
         socialMod = 5;
         type = "Social";
-        text = "test social 4";
+        text = "Alex wants to do a group cosplay for the next Con! You’d be the perfect Lolita, or Warrior. Either way, we can count you in, right?";
         texture = "social";
     }
 }

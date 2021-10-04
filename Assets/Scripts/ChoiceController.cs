@@ -27,6 +27,7 @@ public class ChoiceController : MonoBehaviour
     private int currentLoveIndex = 0;
     private int currentCareerIndex = 0;
     private Stats stats;
+    private AudioSource audioData;
 
     // Start is called before the first frame update
     void Start()
@@ -45,14 +46,32 @@ public class ChoiceController : MonoBehaviour
 
         stats = GameObject.Find("Stats").GetComponent<Stats>();
 
-        string AssetsFolderPath = Application.dataPath;
+        //string AssetsFolderPath = Application.dataPath;
         // Count files in the folders
         foreach(var type in typeList){
+            /* //TODO Count files in folder
             string typeFolder = AssetsFolderPath + "/Scripts/Choices/" + type;
             DirectoryInfo dir = new DirectoryInfo(typeFolder);
             FileInfo[] info = dir.GetFiles("*.cs");
             int fileCount = info.Length;
             Array.Clear(info, 0, info.Length);
+            */
+            int fileCount = 0;
+            switch(type){
+                case "Social":
+                    fileCount = 12;
+                    break;
+                case "Family":
+                    fileCount = 11;
+                    break;
+                case "Love":
+                    fileCount = 11;
+                    break;
+                case "Career":
+                    fileCount = 10;
+                    break;
+            }
+            
             for(var i = 0 ; i < fileCount ; i++){
                 switch(type){
                     case "Social":
@@ -77,6 +96,8 @@ public class ChoiceController : MonoBehaviour
         Shuffle(careerIdList);
         
         UpdateChoices();
+
+        audioData = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -84,6 +105,7 @@ public class ChoiceController : MonoBehaviour
     {
         if (Input.GetKeyDown("left"))
         {
+            audioData.Play(0);
             stats.Mental += choiceLeft.mentalMod;
             stats.Social += choiceLeft.socialMod;
             stats.Family += choiceLeft.familyMod;
@@ -94,6 +116,7 @@ public class ChoiceController : MonoBehaviour
 
         if (Input.GetKeyDown("right"))
         {
+            audioData.Play(0);
             stats.Mental += choiceRight.mentalMod;
             stats.Social += choiceRight.socialMod;
             stats.Family += choiceRight.familyMod;
@@ -104,6 +127,7 @@ public class ChoiceController : MonoBehaviour
 
         if (Input.GetKeyDown("up"))
         {
+            audioData.Play(0);
             stats.Mental += choiceLeft.mentalMod + choiceRight.mentalMod;
             stats.Social += choiceLeft.socialMod + choiceRight.socialMod;
             stats.Family += choiceLeft.familyMod + choiceRight.familyMod;
@@ -114,6 +138,7 @@ public class ChoiceController : MonoBehaviour
 
         if (Input.GetKeyDown("down"))
         {
+            audioData.Play(0);
             stats.Mental += choiceDown.GetComponent<Choice>().mentalMod;
             
             stats.Social -= choiceLeft.socialMod;

@@ -84,9 +84,9 @@ public class Stats : MonoBehaviour
         careerText = GameObject.Find("CareerText");
 
         Mental = 50;
-        Social = 10;
-        Family = 10;
-        Love = 10;
-        Career = 10;
+        Social = 20;
+        Family = 20;
+        Love = 20;
+        Career = 20;
     }
 }

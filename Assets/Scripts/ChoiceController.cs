@@ -18,24 +18,62 @@ public class ChoiceController : MonoBehaviour
     private GameObject up;
     private GameObject down;
     private List<string> typeList = new List<string>{"Social","Family","Love","Career"};
+    private List<int> socialIdList = new List<int>{};
+    private List<int> familyIdList = new List<int>{};
+    private List<int> loveIdList = new List<int>{};
+    private List<int> careerIdList = new List<int>{};
+    private int currentSocialIndex = 0;
+    private int currentFamilyIndex = 0;
+    private int currentLoveIndex = 0;
+    private int currentCareerIndex = 0;
     private Stats stats;
 
     // Start is called before the first frame update
     void Start()
     {
-        choiceLeft = GameObject.Find("Choices").transform.Find("Left").gameObject.GetComponent<Choice>();
-        choiceRight = GameObject.Find("Choices").transform.Find("Right").gameObject.GetComponent<Choice>();
-        choiceUp = GameObject.Find("Choices").transform.Find("Up").gameObject.GetComponent<Choice>();
-        choiceDown = GameObject.Find("Choices").transform.Find("Down").gameObject.GetComponent<Choice>();
         left = GameObject.Find("Choices").transform.Find("Left").gameObject;
         right = GameObject.Find("Choices").transform.Find("Right").gameObject;
         up = GameObject.Find("Choices").transform.Find("Up").gameObject;
         down = GameObject.Find("Choices").transform.Find("Down").gameObject;
+        choiceLeft = left.GetComponent<Choice>();
+        choiceRight = right.GetComponent<Choice>();
+        choiceUp = up.GetComponent<Choice>();
+        choiceDown = down.GetComponent<Choice>();
 
         // Self choice
         choiceDown.mentalMod = 5;
 
         stats = GameObject.Find("Stats").GetComponent<Stats>();
+
+        // Count files in the folders
+        foreach(var type in typeList){
+            string typeFolder = "Assets/Scripts/Choices/" + type;
+            DirectoryInfo dir = new DirectoryInfo(typeFolder);
+            FileInfo[] info = dir.GetFiles("*.cs");
+            int fileCount = info.Length;
+            Array.Clear(info, 0, info.Length);
+            for(var i = 0 ; i < fileCount ; i++){
+                switch(type){
+                    case "Social":
+                        socialIdList.Add(i+1);
+                        break;
+                    case "Family":
+                        familyIdList.Add(i+1);
+                        break;
+                    case "Love":
+                        loveIdList.Add(i+1);
+                        break;
+                    case "Career":
+                        careerIdList.Add(i+1);
+                        break;
+                }
+            }
+        }
+
+        Shuffle(socialIdList);
+        Shuffle(familyIdList);
+        Shuffle(loveIdList);
+        Shuffle(careerIdList);
         
         UpdateChoices();
     }
@@ -93,7 +131,7 @@ public class ChoiceController : MonoBehaviour
 
     void UpdateChoices()
     {
-        // Select 2 randoms index pour the typeList
+        // Select 2 randoms index for the typeList
         int typeIndex = Random.Range(0, typeList.Count);
         string randomType = typeList[typeIndex];
         int typeIndex2 = Random.Range(0, typeList.Count);
@@ -102,27 +140,82 @@ public class ChoiceController : MonoBehaviour
         }
         var randomType2 = typeList[typeIndex2];
 
-        // Count files in the folders
-        string typeFolder = "Assets/Scripts/Choices/" + randomType;
-        DirectoryInfo dir = new DirectoryInfo(typeFolder);
-        FileInfo[] info = dir.GetFiles("*.cs");
-        int fileCount = info.Length;
-        Array.Clear(info, 0, info.Length);
-        var fileCount2 = (int?) null;
-        if(randomType2 != null){
-            string typeFolder2 = "Assets/Scripts/Choices/" + randomType2;
-            DirectoryInfo dir2 = new DirectoryInfo(typeFolder2);
-            FileInfo[] info2 = dir2.GetFiles("*.cs");
-            fileCount2 = info2.Length;
-            Array.Clear(info2, 0, info2.Length);
+        // Choose next random
+        int randomId = 0;
+        switch(randomType){
+            case "Social":
+                randomId = socialIdList[currentSocialIndex];
+                currentSocialIndex++;
+                if(currentSocialIndex == socialIdList.Count){
+                    Shuffle(socialIdList);
+                    currentSocialIndex = 0;
+                }
+                break;
+            case "Family":
+                randomId = familyIdList[currentFamilyIndex];
+                currentFamilyIndex++;
+                if(currentFamilyIndex == familyIdList.Count){
+                    Shuffle(familyIdList);
+                    currentFamilyIndex = 0;
+                }
+                break;
+            case "Love":
+                randomId = loveIdList[currentLoveIndex];
+                currentLoveIndex++;
+                if(currentLoveIndex == loveIdList.Count){
+                    Shuffle(loveIdList);
+                    currentLoveIndex = 0;
+                }
+                break;
+            case "Career":
+                randomId = careerIdList[currentCareerIndex];
+                currentCareerIndex++;
+                if(currentCareerIndex == careerIdList.Count){
+                    Shuffle(careerIdList);
+                    currentCareerIndex = 0;
+                }
+                break;
         }
 
-        // Instantiate filler
-        ChoiceFiller soLeft = (ChoiceFiller)ScriptableObject.CreateInstance(randomType + Random.Range(1, fileCount).ToString());
-        var soRight = (ChoiceFiller) null;
-        if(fileCount2 != null){ 
-            soRight = (ChoiceFiller)ScriptableObject.CreateInstance(randomType2 + Random.Range(1, (int)fileCount2).ToString());
+        int randomId2 = 0;
+        switch(randomType2){
+            case "Social":
+                randomId2 = socialIdList[currentSocialIndex];
+                currentSocialIndex++;
+                if(currentSocialIndex == socialIdList.Count){
+                    Shuffle(socialIdList);
+                    currentSocialIndex = 0;
+                }
+                break;
+            case "Family":
+                randomId2 = familyIdList[currentFamilyIndex];
+                currentFamilyIndex++;
+                if(currentFamilyIndex == familyIdList.Count){
+                    Shuffle(familyIdList);
+                    currentFamilyIndex = 0;
+                }
+                break;
+            case "Love":
+                randomId2 = loveIdList[currentLoveIndex];
+                currentLoveIndex++;
+                if(currentLoveIndex == loveIdList.Count){
+                    Shuffle(loveIdList);
+                    currentLoveIndex = 0;
+                }
+                break;
+            case "Career":
+                randomId2 = careerIdList[currentCareerIndex];
+                currentCareerIndex++;
+                if(currentCareerIndex == careerIdList.Count){
+                    Shuffle(careerIdList);
+                    currentCareerIndex = 0;
+                }
+                break;
         }
+        
+        // Instantiate filler
+        ChoiceFiller soLeft = (ChoiceFiller)ScriptableObject.CreateInstance(randomType + randomId.ToString());
+        ChoiceFiller soRight = (ChoiceFiller)ScriptableObject.CreateInstance(randomType2 + randomId2.ToString());
 
         // Fill the choices
         choiceLeft.mentalMod = soLeft.mentalMod;
@@ -133,14 +226,22 @@ public class ChoiceController : MonoBehaviour
         left.transform.Find("Text").gameObject.GetComponent<TMP_Text>().text = soLeft.text;
         left.transform.Find("Image").gameObject.GetComponent<RawImage>().texture = Resources.Load<Texture>("Images/" + soLeft.texture);
 
-        if (soRight != null){
-            choiceRight.mentalMod = soRight.mentalMod;
-            choiceRight.socialMod = soRight.socialMod;
-            choiceRight.familyMod = soRight.familyMod;
-            choiceRight.loveMod = soRight.loveMod;
-            choiceRight.careerMod = soRight.careerMod;
-            right.transform.Find("Text").gameObject.GetComponent<TMP_Text>().text = soRight.text;
-            right.transform.Find("Image").gameObject.GetComponent<RawImage>().texture = Resources.Load<Texture>("Images/" + soRight.texture);
+        choiceRight.mentalMod = soRight.mentalMod;
+        choiceRight.socialMod = soRight.socialMod;
+        choiceRight.familyMod = soRight.familyMod;
+        choiceRight.loveMod = soRight.loveMod;
+        choiceRight.careerMod = soRight.careerMod;
+        right.transform.Find("Text").gameObject.GetComponent<TMP_Text>().text = soRight.text;
+        right.transform.Find("Image").gameObject.GetComponent<RawImage>().texture = Resources.Load<Texture>("Images/" + soRight.texture);
+    }
+
+    private void Shuffle<T>(List<T> list)  
+    {  
+        for (int i = 0; i < list.Count; i++) {
+            var current = list[i];
+            int randomIndex = Random.Range(i, list.Count);
+            list[i] = list[randomIndex];
+            list[randomIndex] = current;
         }
     }
 }

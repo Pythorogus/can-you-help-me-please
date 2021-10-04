@@ -45,9 +45,10 @@ public class ChoiceController : MonoBehaviour
 
         stats = GameObject.Find("Stats").GetComponent<Stats>();
 
+        string AssetsFolderPath = Application.dataPath;
         // Count files in the folders
         foreach(var type in typeList){
-            string typeFolder = "Assets/Scripts/Choices/" + type;
+            string typeFolder = AssetsFolderPath + "/Scripts/Choices/" + type;
             DirectoryInfo dir = new DirectoryInfo(typeFolder);
             FileInfo[] info = dir.GetFiles("*.cs");
             int fileCount = info.Length;
